@@ -1,0 +1,25 @@
+<?php
+
+$vid = "tipo_de_documento";
+$name = "Tipo de documento";
+
+$vocabularies = \Drupal\taxonomy\Entity\Vocabulary::loadMultiple();
+
+if (!isset($vocabularies[$vid])) {
+  $vocabulary = \Drupal\taxonomy\Entity\Vocabulary::create(array(
+        'vid' => $vid,
+        'description' => '',
+        'name' => $name,
+  ))->save();
+  
+  $categories = ['CC', 'TI', 'Pasaporte', 'CE'];
+  foreach ($categories as $category) {
+  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->create([
+    'name' => $category,
+    'vid' => $vid,
+  ])->save();
+  }
+}
+else {
+  \Drupal::messenger()->addMessage($name . ' vocabulary alredy exits');
+}

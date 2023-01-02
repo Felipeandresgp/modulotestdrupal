@@ -1,0 +1,6 @@
+name: 'Test module'
+description: 'Modulo de prueba para el cargo de desarrollador web'
+package: FelipeGonzalez
+
+type: module
+core_version.requirement:  ^8 || ^9
